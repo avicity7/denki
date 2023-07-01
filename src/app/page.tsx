@@ -12,7 +12,7 @@ const Home = () => {
     <>
       <Navbar currentPage={"Home"}/>
 
-      <div className="mx-12 mt-3 bg-white font-sans">
+      <div className="mx-12 mt-12 bg-white font-sans">
         <div className="flex flex-col justify-center items-center">
           <Text className="font-bold text-3xl mb-6">Welcome back, User.</Text>
         </div>
