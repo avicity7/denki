@@ -12,11 +12,11 @@ const Home = () => {
     <>
       <Navbar currentPage={"Home"}/>
 
-      <div className="mx-12 mt-12 bg-white font-sans">
-        <div className="flex flex-col justify-center items-center">
-          <Text className="font-bold text-3xl mb-6">Welcome back, User.</Text>
+      <div className="bg-white font-sans">
+        <div className="mb-6">
+          <Text className="font-bold text-3xl text-gray-700 p-12">Welcome back, User.</Text>
         </div>
-        <div>
+        <div className="mx-12">
           <ApplianceCard appliance={{name:'Air Conditioner'}}/>
         </div>
       </div>

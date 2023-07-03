@@ -6,8 +6,8 @@ import { Avatar } from '@chakra-ui/react'
 
 const Navbar = ({currentPage}: any) => { 
   return (
-    <div className="w-screen flex justify-between">
-      <ul className="flex items-center mt-6 ml-10">
+    <div className="w-screen flex justify-between py-6 shadow">
+      <ul className="flex items-center ml-10">
         <li className="flex items-center">
           <Image src='/denkiLogo.svg' alt='logo' width={28} height={28}/>
           <p className="font-sans text-xl font-extrabold ml-2 text-[#3F3E84]">denki</p>
@@ -24,7 +24,7 @@ const Navbar = ({currentPage}: any) => {
 
 
       </ul>
-      <Link href='/myAccount' className="mt-6 mr-10"> 
+      <Link href='/myAccount' className="mr-10"> 
         <Avatar size='sm'/>
       </Link>
     </div>
