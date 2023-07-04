@@ -3,13 +3,15 @@ import Navbar from "@/src/components/navbar"
 import { getAuth } from "firebase/auth"
 import { app } from "../../../utils/firebase"
 import { Avatar, Text } from "@chakra-ui/react"
-
+import { useEffect } from "react"
 
 const MyAccount = () => {
   const auth = getAuth(app)
-  if (auth.currentUser === null) {
-    window.location.replace("/signup")
-  }
+  useEffect(() => {
+    if (auth.currentUser === null) {
+      window.location.replace("/signup")
+    }
+  },[auth])
 
   return(
     <>
