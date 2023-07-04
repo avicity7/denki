@@ -2,24 +2,29 @@
 import Link from 'next/link'
 import Image from 'next/image'
 
-import { Avatar } from '@chakra-ui/react'
+import { Avatar, Text } from '@chakra-ui/react'
 
 const Navbar = ({currentPage}: any) => { 
   return (
-    <div className="w-screen flex justify-between py-6 shadow">
+    <div className="flex items-center w-screen flex justify-between py-4">
       <ul className="flex items-center ml-10">
         <li className="flex items-center">
-          <Image src='/denkiLogo.svg' alt='logo' width={28} height={28}/>
-          <p className="font-sans text-xl font-extrabold ml-2 text-[#3F3E84]">denki</p>
-          <p className="font-sans text-2xl font-thin ml-3 text-gray-200">|</p>
+          <Link href="/" prefetch={true} className="flex items-center">
+            <Image src='/denkiLogo.svg' alt='logo' width={28} height={28}/>
+            <p className="font-sans text-xl font-extrabold ml-2 text-[#3F3E84]">denki</p>
+          </Link>
         </li>
 
-        <li className="flex ml-4">
-          <Link href="/" prefetch={true} className={"text-lg font-sans tracking-wide "+(currentPage == "Home" ? "text-[#3F3E84]" : "text-gray-400 hover:text-purple-800")}>home</Link>
+        <li className="flex ml-8">
+          <Link href="/" prefetch={true}>
+              <Text className={"p-2 rounded-full border-radius-xl text-lg font-sans tracking-wide "+(currentPage == "Home" ? "text-[#3F3E84] bg-violet-50 font-semibold" : "text-gray-400 group-hover:text-purple-800")}>home</Text>
+          </Link>
         </li>
 
         <li className="flex ml-6">
-          <Link href="/addAppliance" prefetch={true} className={"text-lg font-sans tracking-wide "+(currentPage == "AddAppliance" ? "text-[#3F3E84]" : "text-gray-400 hover:text-purple-800")}>add appliance</Link>
+          <Link href="/addAppliance" prefetch={true}>
+            <Text className={"p-2 rounded-full border-radius-xl text-lg font-sans tracking-wide "+(currentPage == "AddAppliance" ? "text-[#3F3E84] bg-violet-50 font-semibold" : "text-gray-400 group-hover:text-purple-800")}>add appliance</Text>
+          </Link>
         </li>
 
 
