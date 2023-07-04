@@ -26,6 +26,7 @@ const About = () => {
       <div className="flex flex-col items-center font-sans mt-8 p-12">
         <Text className="text-3xl font-semibold text-neutral-700 mb-8">Get real-time information.</Text>
         <Image src="/plugFront.png" alt="plugFront" width="960" height="540"/>
+        <Text></Text>
       </div>
     </>
   )
