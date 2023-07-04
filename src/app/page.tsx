@@ -12,7 +12,7 @@ const Home = () => {
     <>
       <Navbar currentPage={"Home"}/>
 
-      <div className="bg-white font-sans">
+      <div className="font-sans">
         <div className="mb-6">
           <Text className="font-bold text-3xl text-gray-700 p-12">Welcome back, User.</Text>
         </div>

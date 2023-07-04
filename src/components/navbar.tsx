@@ -15,11 +15,11 @@ const Navbar = ({currentPage}: any) => {
         </li>
 
         <li className="flex ml-4">
-          <Link href="/" prefetch={true} className={"text-xl font-semibold font-sans tracking-wide "+(currentPage == "Home" ? "text-[#3F3E84]" : "text-gray-400 hover:text-purple-800")}>home</Link>
+          <Link href="/" prefetch={true} className={"text-lg font-sans tracking-wide "+(currentPage == "Home" ? "text-[#3F3E84]" : "text-gray-400 hover:text-purple-800")}>home</Link>
         </li>
 
         <li className="flex ml-6">
-          <Link href="/addAppliance" prefetch={true} className={"text-xl font-semibold font-sans tracking-wide "+(currentPage == "AddAppliance" ? "text-[#3F3E84]" : "text-gray-400 hover:text-purple-800")}>add appliance</Link>
+          <Link href="/addAppliance" prefetch={true} className={"text-lg font-sans tracking-wide "+(currentPage == "AddAppliance" ? "text-[#3F3E84]" : "text-gray-400 hover:text-purple-800")}>add appliance</Link>
         </li>
 
 
