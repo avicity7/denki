@@ -4,23 +4,22 @@ import { getDocs, setDoc, doc, collection, onSnapshot, deleteDoc } from "@fireba
 import { firestore } from "@/utils/firebase"
 import { app } from "@/utils/firebase"
 import { getAuth } from "firebase/auth"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Text, Input, Button } from "@chakra-ui/react"
 import SyncIcon from '@mui/icons-material/Sync';
 
-let creating = false
+let creating = true
 
 const AddAppliance = () => {
   const auth = getAuth(app)
   const [applianceId, setApplianceId] = useState("")
   const [buttonText, setButtonText] = useState(true)
-  const [refresh, setRefresh] = useState(false)
-
-  const addAppliance = async(deviceId: string) => {
+  const [refresh, setRefresh] = useState(true)
+  
+  const addAppliance = (deviceId: string) => {
     if (!creating) {
      creating = !creating
-     setButtonText(!buttonText)
-     setRefresh(!refresh)
+     setButtonText(false)
      const ref = doc(firestore, "devices", String(deviceId))
      let data = {
        deviceName: "deviceName",
@@ -28,14 +27,15 @@ const AddAppliance = () => {
      }
      try {
        setDoc(ref,data)
+       .then(() => {
+         setButtonText(true)
+       })
      }
      catch(err) {
        console.log(err)
      }
     }
     creating = !creating
-    setButtonText(!buttonText)
-    setRefresh(!refresh)
    }
 
   return (
@@ -54,13 +54,12 @@ const AddAppliance = () => {
             }}
           />
         </div>
-        <Button className="max-w-lg bg-[#3F3E84] hover:bg-purple-600" onClick={() => {
+        <Button className="w-lg bg-[#3F3E84] hover:bg-purple-600" onClick={() => {
           addAppliance(applianceId)
         }}>
-          {buttonText && 
+          {buttonText ? 
             <Text className="text-white">Add an Appliance</Text>
-          }
-          {!buttonText && 
+          :
             <SyncIcon className="text-white animate-spin transform rotate-180"/>
           }
         </Button>
