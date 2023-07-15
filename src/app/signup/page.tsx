@@ -3,7 +3,8 @@ import Navbar from "@/src/components/navbar"
 import { Input, Text, Button } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
-import { app } from "@/utils/firebase"
+import { getDocs, setDoc, doc, collection, onSnapshot, deleteDoc } from "@firebase/firestore"
+import { app, firestore } from "@/utils/firebase"
 
 const SignUp = () => {
   const auth = getAuth(app)
@@ -44,6 +45,16 @@ const SignUp = () => {
         <Button className="max-w-sm bg-[#3F3E84] hover:bg-purple-600" onClick={() => {
           createUserWithEmailAndPassword(auth, email, password)
           .then(() => {
+            const ref = doc(firestore, "users", email)
+            let data = {
+              devices: []
+            }
+            try {
+              setDoc(ref,data)
+            }
+            catch(err) {
+              console.log(err)
+            }
             window.location.replace("/login")
           })
         }}>
