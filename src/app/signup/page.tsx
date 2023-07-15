@@ -4,20 +4,18 @@ import { Input, Text, Button } from "@chakra-ui/react"
 import { useState, useEffect } from "react"
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth"
 import { app } from "@/utils/firebase"
-import { useRouter } from 'next/router'
 
 const SignUp = () => {
   const auth = getAuth(app)
-  const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
   useEffect(() => {
-    if (auth !== null) {
-      router.replace('/home')
+    if (auth !== null && typeof(window) !== undefined) {
+      window.location.replace('/home')
     }
-  },[auth, router])
-  
+  },[auth])
+
   return(
     <>
       <Navbar />
