@@ -4,13 +4,15 @@ import { Input, Text, Button } from "@chakra-ui/react"
 import { useState } from "react"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { app } from "../../../utils/firebase"
+import { useRouter } from 'next/router'
 
 const Login = () => {
   const auth = getAuth(app)
+  const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   if (auth !== null) {
-    window.location.replace('/home')
+    router.replace('/home')
   }
   return(
     <>
