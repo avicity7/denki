@@ -1,12 +1,11 @@
 'use client'
 import Navbar from "@/src/components/navbar"
 import { getDocs, setDoc, doc, collection, onSnapshot, deleteDoc } from "@firebase/firestore"
-import { firestore } from "@/utils/firebase"
-import { app } from "@/utils/firebase"
+import { app, firestore } from "@/utils/firebase"
 import { getAuth } from "firebase/auth"
 import { useState, useEffect } from "react"
 import { Text, Input, Button } from "@chakra-ui/react"
-import SyncIcon from '@mui/icons-material/Sync';
+import SyncIcon from '@mui/icons-material/Sync'
 
 let creating = true
 
