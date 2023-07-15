@@ -12,8 +12,8 @@ const SignUp = () => {
   const [password, setPassword] = useState("")
 
   useEffect(() => {
-    if (auth !== null && typeof(window) !== undefined) {
-      window.location.replace('/home')
+    if (auth.currentUser !== null && typeof(window) !== undefined) {
+      window.location.replace("/home")
     }
   },[auth])
 

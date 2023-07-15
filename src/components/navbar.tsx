@@ -76,7 +76,7 @@ const Navbar = ({currentPage}: any) => {
               <Stack>
                 <Link href="/home">
                   <div className="flex flex-row items-center font-DMSans">
-                    <Icon height="24" icon="akar-icons:map" style={{ color: currentPage === 'Home' ? '#3F3E84' : '#CBCBCB' }} />
+                    <Icon height="24" icon="fluent:home-16-regular" style={{ color: currentPage === 'Home' ? '#3F3E84' : '#CBCBCB' }} />
                     <Text fontSize='md' className="font-medium text-left pl-2" style={{ color: currentPage === 'Home' ? '#3F3E84' : '#CBCBCB' }}>home</Text>
                     <Text></Text>
                   </div>
