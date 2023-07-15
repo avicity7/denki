@@ -1,7 +1,7 @@
 'use client'
 import Navbar from "@/src/components/navbar"
 import { Input, Text, Button } from "@chakra-ui/react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { app } from "../../../utils/firebase"
 import { useRouter } from 'next/router'
@@ -11,9 +11,13 @@ const Login = () => {
   const router = useRouter()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  if (auth !== null) {
-    router.replace('/home')
-  }
+  
+  useEffect(() => {
+    if (auth !== null) {
+      router.replace('/home')
+    }
+  },[auth, router])
+
   return(
     <>
       <Navbar />
