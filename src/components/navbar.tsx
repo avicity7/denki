@@ -56,7 +56,7 @@ const Navbar = ({currentPage}: any) => {
       </Show>
 
       <Show below="lg">
-        <button onClick={handleDrawerOpen} className="m-4">
+        <button onClick={handleDrawerOpen} className="mt-4 ml-4">
           <MenuRoundedIcon />
         </button>
         <Drawer placement={'left'} onClose={handleDrawerClose} isOpen={drawerOpen}>
@@ -96,7 +96,7 @@ const Navbar = ({currentPage}: any) => {
 
       <Show below="lg">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-DMSans flex lg:min-w-0 lg:flex-1 align-middle">
-          <Link href="/" className="-m-1.5 p-1.5">
+          <Link href="/" className="mt-4">
             <div className='flex justify-center'>
               <Image src='/denkiLogo.svg' alt='logo' width={28} height={28}/>
             </div>

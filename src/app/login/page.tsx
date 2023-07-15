@@ -9,7 +9,9 @@ const Login = () => {
   const auth = getAuth(app)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-
+  if (auth !== null) {
+    window.location.replace('/home')
+  }
   return(
     <>
       <Navbar />
