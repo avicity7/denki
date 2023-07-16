@@ -1,6 +1,6 @@
 'use client'
 import Navbar from "@/src/components/navbar"
-import { getDocs, setDoc, doc, collection, onSnapshot, deleteDoc } from "@firebase/firestore"
+import { getDoc, setDoc, doc, collection, onSnapshot, deleteDoc } from "@firebase/firestore"
 import { app, firestore } from "@/utils/firebase"
 import { getAuth } from "firebase/auth"
 import { useState, useEffect } from "react"
@@ -20,13 +20,10 @@ const AddAppliance = () => {
      creating = !creating
      setButtonText(false)
      const ref = doc(firestore, "devices", String(deviceId))
-     let data = {
-       deviceName: "deviceName",
-       currentUsage: 0
-     }
      try {
-       setDoc(ref,data)
-       .then(() => {
+       getDoc(ref)
+       .then((docSnap: any) => {
+         console.log(docSnap.data())
          setButtonText(true)
        })
      }
