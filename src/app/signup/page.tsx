@@ -55,7 +55,7 @@ const SignUp = () => {
             catch(err) {
               console.log(err)
             }
-            window.location.replace("/login")
+            window.location.replace("/home")
           })
         }}>
           <Text className="text-white">Sign Up</Text>
