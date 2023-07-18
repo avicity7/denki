@@ -22,24 +22,26 @@ const Home = () => {
 
   useEffect(() => {
     console.log('reading')
-    let email = auth.currentUser?.email
+    const email = auth.currentUser?.email
     const userRef = doc(firestore, "users", String(email))
     if (email && devices) {
       getDoc(userRef)
       .then((docSnap: any) => {
-        let savedDeviceIds = docSnap.data().devices
-        let q = query(collection(firestore, 'devices'), where('__name__', 'in', savedDeviceIds ))
+        const savedDeviceIds = docSnap.data().devices
+        const q = query(collection(firestore, 'devices'), where('__name__', 'in', savedDeviceIds ))
         const unsub = onSnapshot(q, (deviceSnap) => {
           const deviceArray: Device[] = []
           deviceSnap.forEach((doc) => {
             deviceArray.push(doc.data() as Device)
           })
-          setDevices(deviceArray)
+          if (deviceArray != devices) {
+            setDevices(deviceArray)
+          }
         })
         return () => unsub()
       })
     }
-  })
+  },[])
 
   return (
     <>
