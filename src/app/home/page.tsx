@@ -3,12 +3,42 @@
 import Image from 'next/image'
 import { Text } from '@chakra-ui/react'
 import SettingsIcon from '@mui/icons-material/Settings';
+import { getDoc, setDoc, doc, onSnapshot, collection, query, where } from "@firebase/firestore"
+import { app, firestore } from "@/utils/firebase"
+import { getAuth } from "firebase/auth"
+import { useState, useEffect } from "react"
 
 //Component Imports
 import ApplianceCard from '../../components/applianceCard'
 import Navbar from '../../components/navbar'
 
+
 const Home = () => {
+  const auth = getAuth(app) 
+  interface Device {
+    deviceName: string,
+    currentUsage: number
+  }
+  const [devices, setDevices] = useState<Device[]>([])
+
+  useEffect(() => {
+    let email = auth.currentUser?.email
+    let deviceInfoArray = []
+    const userRef = doc(firestore, "users", String(email))
+    getDoc(userRef)
+    .then((docSnap: any) => {
+      let savedDeviceIds = docSnap.data().devices
+      let q = query(collection(firestore, 'devices'), where('__name__', 'in', savedDeviceIds ))
+      onSnapshot(q, (deviceSnap) => {
+        const deviceArray: Device[] = []
+        deviceSnap.forEach((doc) => {
+          deviceArray.push(doc.data() as Device)
+        })
+        setDevices(deviceArray)
+      })
+    })
+  },[auth.currentUser?.email])
+
   return (
     <>
       <Navbar currentPage={"Home"}/>
@@ -18,12 +48,13 @@ const Home = () => {
           <Text className="font-bold text-3xl text-gray-700">At a glance</Text>
           <SettingsIcon className='text-gray-300'/>
         </div>
-        <div className="flex mx-12">
-
-        </div>
-        <div className="mx-12">
-          <ApplianceCard appliance={{name:'Air Conditioner'}}/>
-        </div>
+        <ul className="mx-12">
+          {devices && devices.map((device) => (
+            <li key={device.deviceName}>
+              <ApplianceCard appliance={{name: device.deviceName, currentUsage: device.currentUsage}}/>
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   )

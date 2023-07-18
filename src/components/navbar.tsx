@@ -29,14 +29,14 @@ const Navbar = ({currentPage}: any) => {
         <div className="flex items-center w-screen flex justify-between py-4">
           <ul className="flex items-center ml-10">
             <li className="flex items-center">
-              <Link href="/home" prefetch={true} className="flex items-center">
+              <Link href="/home" className="flex items-center">
                 <Image src='/denkiLogo.svg' alt='logo' width={28} height={28}/>
                 <p className="font-sans text-xl font-extrabold ml-2 text-[#3F3E84]">denki</p>
               </Link>
             </li>
 
             <li className="flex ml-8">
-              <Link href="/home" prefetch={true}>
+              <Link href="/home">
                   <Text className={"p-2 rounded-full border-radius-xl text-lg font-sans tracking-wide "+(currentPage == "Home" ? "text-[#3F3E84] bg-violet-50 font-semibold" : "text-gray-400 group-hover:text-purple-800")}>home</Text>
               </Link>
             </li>

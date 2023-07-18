@@ -15,10 +15,10 @@ const deviceRef = db.collection('devices').doc('abeif12')
 const randomize = async() => {
   let data = {
     deviceName: "Air Conditioner",
-    currentUsage: Math.random()*(0.9-0.3)+0.3
+    currentUsage: (Math.random()*(0.9-0.3)+0.3).toFixed(3)
   }
   await deviceRef.set(data)
-  setTimeout(randomize,10000)
+  setTimeout(randomize,5000)
 }
 
 randomize()

@@ -15,7 +15,7 @@ const SignUp = () => {
     if (auth.currentUser !== null && typeof(window) !== undefined) {
       window.location.replace("/home")
     }
-  },[auth])
+  })
 
   return(
     <>

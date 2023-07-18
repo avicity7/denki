@@ -13,18 +13,34 @@ const AddAppliance = () => {
   const auth = getAuth(app)
   const [applianceId, setApplianceId] = useState("")
   const [buttonText, setButtonText] = useState(true)
-  const [refresh, setRefresh] = useState(true)
   
   const addAppliance = (deviceId: string) => {
     if (!creating) {
      creating = !creating
      setButtonText(false)
-     const ref = doc(firestore, "devices", String(deviceId))
+     const deviceRef = doc(firestore, "devices", String(deviceId))
      try {
-       getDoc(ref)
-       .then((docSnap: any) => {
-         console.log(docSnap.data())
-         setButtonText(true)
+       getDoc(deviceRef)
+       .then(() => {
+          let email = auth.currentUser?.email
+          const userRef = doc(firestore, "users", String(email))
+          getDoc(userRef)
+          .then((docData: any) => {
+            let array = docData.data().devices
+            if (!array.includes(deviceId)) {
+              array.push(deviceId)
+            }
+            let data = {
+              devices: array
+            }
+            try {
+              setDoc(userRef,data)
+            }
+            catch(err) {
+              console.log(err)
+            }
+          })
+          setButtonText(true)
        })
      }
      catch(err) {
