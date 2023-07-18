@@ -44,18 +44,18 @@ const SignUp = () => {
         </button>
         <Button className="max-w-sm bg-[#3F3E84] hover:bg-purple-600" onClick={() => {
           createUserWithEmailAndPassword(auth, email, password)
-          .then(() => {
+          .then(async() => {
             const ref = doc(firestore, "users", email)
             let data = {
               devices: []
             }
             try {
-              setDoc(ref,data)
+              await setDoc(ref,data)
+              window.location.replace("/home")
             }
             catch(err) {
               console.log(err)
             }
-            window.location.replace("/home")
           })
         }}>
           <Text className="text-white">Sign Up</Text>
