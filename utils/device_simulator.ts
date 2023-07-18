@@ -30,7 +30,7 @@ const randomize = async() => {
     let deviceRef = db.collection('devices').doc(devices[i])
     await deviceRef.set(deviceData[i])
   }
-  setTimeout(randomize,3000)
+  setTimeout(randomize,20000)
 }
 
 randomize()
