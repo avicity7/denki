@@ -3,7 +3,7 @@ import { Stack, Text, Card, CardBody, Image } from '@chakra-ui/react'
 
 const ApplianceCard = ({appliance}: any) => {
   return (
-    <Card className="group max-w-sm hover:bg-zinc-700">
+    <Card className="group max-w-sm hover:bg-zinc-700 my-6">
       <CardBody>
         <Text className="text-xl font-medium mb-3 group-hover:text-violet-300">{appliance.name}</Text>
         <Text className={"group-hover:text-white text-center text-3xl mt-8 mb-2 font-bold "+(
