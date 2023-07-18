@@ -11,6 +11,7 @@ import {
   Show,
   Drawer,
   DrawerBody,
+  DrawerFooter,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent 
@@ -42,7 +43,7 @@ const Navbar = ({currentPage}: any) => {
             </li>
 
             <li className="flex ml-6">
-              <Link href="/addAppliance" prefetch={true}>
+              <Link href="/addAppliance">
                 <Text className={"p-2 rounded-full border-radius-xl text-lg font-sans tracking-wide "+(currentPage == "AddAppliance" ? "text-[#3F3E84] bg-violet-50 font-semibold" : "text-gray-400 group-hover:text-purple-800")}>add appliance</Text>
               </Link>
             </li>
@@ -90,6 +91,14 @@ const Navbar = ({currentPage}: any) => {
                 </Link>
               </Stack>
             </DrawerBody>
+            <DrawerFooter>
+              <div className="w-full mb-4">
+                <Link href={auth.currentUser === null ? "/signup" : "/myAccount"} className="mr-10 flex flex-row items-center"> 
+                  <Avatar size='sm' name={auth?.currentUser?.email as string}/>
+                  <Text className="ml-2 font-medium text-neutral-600">{auth?.currentUser?.email != undefined ? auth?.currentUser?.email: "Sign In"}</Text>
+                </Link>
+              </div>
+            </DrawerFooter>
           </DrawerContent>
         </Drawer>
       </Show>

@@ -1,6 +1,6 @@
 'use client'
 import Navbar from "@/src/components/navbar"
-import { getDoc, setDoc, doc, collection, onSnapshot, deleteDoc } from "@firebase/firestore"
+import { getDoc, setDoc, doc } from "@firebase/firestore"
 import { app, firestore } from "@/utils/firebase"
 import { getAuth } from "firebase/auth"
 import { useState, useEffect } from "react"

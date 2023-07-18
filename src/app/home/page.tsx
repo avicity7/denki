@@ -1,5 +1,4 @@
 'use client'
-
 import Image from 'next/image'
 import { Text } from '@chakra-ui/react'
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -14,7 +13,7 @@ import Navbar from '../../components/navbar'
 
 
 const Home = () => {
-  const auth = getAuth(app) 
+  let auth = getAuth(app)
   interface Device {
     deviceName: string,
     currentUsage: number
@@ -23,21 +22,22 @@ const Home = () => {
 
   useEffect(() => {
     let email = auth.currentUser?.email
-    let deviceInfoArray = []
     const userRef = doc(firestore, "users", String(email))
-    getDoc(userRef)
-    .then((docSnap: any) => {
-      let savedDeviceIds = docSnap.data().devices
-      let q = query(collection(firestore, 'devices'), where('__name__', 'in', savedDeviceIds ))
-      onSnapshot(q, (deviceSnap) => {
-        const deviceArray: Device[] = []
-        deviceSnap.forEach((doc) => {
-          deviceArray.push(doc.data() as Device)
+    if (email && devices) {
+      getDoc(userRef)
+      .then((docSnap: any) => {
+        let savedDeviceIds = docSnap.data().devices
+        let q = query(collection(firestore, 'devices'), where('__name__', 'in', savedDeviceIds ))
+        onSnapshot(q, (deviceSnap) => {
+          const deviceArray: Device[] = []
+          deviceSnap.forEach((doc) => {
+            deviceArray.push(doc.data() as Device)
+          })
+          setDevices(deviceArray)
         })
-        setDevices(deviceArray)
       })
-    })
-  },[auth.currentUser?.email])
+    }
+  },[auth.currentUser?.email, devices])
 
   return (
     <>
@@ -49,7 +49,7 @@ const Home = () => {
           <SettingsIcon className='text-gray-300'/>
         </div>
         <ul className="mx-12">
-          {devices && devices.map((device) => (
+          {devices.length > 0 && devices.map((device) => (
             <li key={device.deviceName}>
               <ApplianceCard appliance={{name: device.deviceName, currentUsage: device.currentUsage}}/>
             </li>

@@ -9,16 +9,28 @@ initializeApp({
 
 const db = getFirestore()
 
-const deviceRef = db.collection('devices').doc('abeif12')
-
 
 const randomize = async() => {
-  let data = {
-    deviceName: "Air Conditioner",
-    currentUsage: (Math.random()*(0.9-0.3)+0.3).toFixed(3)
+  let devices = ['abif12','2fex2h','2z82nh']
+  let deviceData = [
+    {
+      deviceName: "Air Conditioner",
+      currentUsage: (Math.random()*(0.9-0.3)+0.3).toFixed(3)
+    },
+    {
+      deviceName: "Washing Machine",
+      currentUsage: (Math.random()*(0.6-0.1)+0.1).toFixed(3)
+    },
+    {
+      deviceName: "TV",
+      currentUsage: (Math.random()*(0.3-0.05)+0.05).toFixed(3)
+    }
+  ]
+  for (let i = 0; i < devices.length; i++) {
+    let deviceRef = db.collection('devices').doc(devices[i])
+    await deviceRef.set(deviceData[i])
   }
-  await deviceRef.set(data)
-  setTimeout(randomize,5000)
+  setTimeout(randomize,3000)
 }
 
 randomize()

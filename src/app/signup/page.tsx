@@ -13,9 +13,9 @@ const SignUp = () => {
 
   useEffect(() => {
     if (auth.currentUser !== null && typeof(window) !== undefined) {
-      window.location.replace("/home")
+      window.location.assign("/home")
     }
-  })
+  },[auth.currentUser])
 
   return(
     <>
