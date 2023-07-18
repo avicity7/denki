@@ -22,6 +22,7 @@ const MyAccount = () => {
         <Text className="font-semibold text-xl mt-3">{auth?.currentUser?.email}</Text>
         <button className="font-semibold text-sm bg-red-400 hover:bg-red-500 text-white p-3 rounded-full" onClick={() => {
           auth.signOut()
+          window.location.reload()
         }}>
           Sign Out
         </button>
