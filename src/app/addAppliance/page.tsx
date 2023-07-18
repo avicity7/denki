@@ -66,7 +66,8 @@ const AddAppliance = () => {
             }}
           />
         </div>
-        <Button className="w-lg bg-[#3F3E84] hover:bg-purple-600" onClick={() => {
+        <Button className="w-lg bg-[#3F3E84] hover:bg-purple-600" onClick={(e) => {
+          e.preventDefault()
           addAppliance(applianceId)
         }}>
           {buttonText ? 
