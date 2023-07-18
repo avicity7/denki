@@ -25,7 +25,7 @@ const About = () => {
       </div>
       <div className="flex flex-col items-center font-sans mt-8 p-12">
         <Text className="text-4xl font-semibold text-neutral-700 mb-8">Get real-time information.</Text>
-        <Image src="/plugFront.png" alt="plugFront" width="960" height="540"/>
+        <Image src="/render0.7.png" alt="plugRender" width="960" height="540"/>
         <Text className="text-xl font-medium text-neutral-600 mt-8">With a Smart Plug, you&apos;ll be able to see exactly how much energy your appliance is using.</Text>
       </div>
       <div className="flex flex-col items-center font-sans mt-8 p-12 bg-[#3F3E84]">
